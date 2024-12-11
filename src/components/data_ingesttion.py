@@ -7,6 +7,9 @@ import pandas as pd  # For data manipulation and analysis
 from sklearn.model_selection import train_test_split  # For splitting dataset
 from dataclasses import dataclass  # For creating data classes
 
+from src.components.data_transformation import DataTransformation  # Import DataTransformation class
+from src.components.data_transformation import DataTransformationConfig  # Import DataTransformation class
+
 
 @dataclass
 class DataIngestionConfig:
@@ -62,3 +65,10 @@ class DataIngestion:
             raise CustomException(e, sys)
 
 
+if __name__ == "__main__":
+    # Call the data ingestion method
+    obj = DataIngestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transformation(train_data, test_data)
